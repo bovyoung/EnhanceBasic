@@ -17,8 +17,6 @@ import com.bowyoung.enhancelibrary.widget.HintToast;
 public abstract class BaseEnhanceFragment extends Fragment {
 
     protected Context mContext;
-    protected View mView;
-
 
     /**
      * bind layout resource file
@@ -32,8 +30,8 @@ public abstract class BaseEnhanceFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (getContentViewID() != 0) {
             mContext = getActivity();
-            mView = inflater.inflate(getContentViewID(), null);
-            return mView;
+            View view = inflater.inflate(getContentViewID(), null);
+            return view;
         } else {
             return super.onCreateView(inflater, container, savedInstanceState);
         }

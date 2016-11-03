@@ -1,5 +1,10 @@
 package com.bowyoung.enhancelibrary.utils;
 
+import android.content.res.Resources;
+
+import com.bowyoung.enhancelibrary.R;
+import com.bowyoung.enhancelibrary.base.BaseAppManager;
+
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -20,6 +25,7 @@ public class TimeUtils {
     }
 
     public static String timeLogic(long initTime) {
+        Resources res = BaseAppManager.getInstance().getReources();
         Calendar calendar = Calendar.getInstance();
         calendar.get(Calendar.DAY_OF_MONTH);
         long now = calendar.getTimeInMillis();
@@ -29,15 +35,15 @@ public class TimeUtils {
         long time = (now - past) / 1000;
         StringBuffer sb = new StringBuffer();
         if (time > 0 && time < 60) {
-            return sb.append(time + "秒前").toString();
+            return sb.append(time + res.getString(R.string.before_seconds)).toString();
         } else if (time > 60 && time < 3600) {
-            return sb.append(time / 60 + "分钟前").toString();
+            return sb.append(time / 60 + res.getString(R.string.before_minutes)).toString();
         } else if (time >= 3600 && time < 3600 * 24) {
-            return sb.append(time / 3600 + "小时前").toString();
+            return sb.append(time / 3600 + res.getString(R.string.before_hours)).toString();
         } else if (time >= 3600 * 24 && time < 3600 * 48) {
-            return sb.append("昨天").toString();
+            return sb.append(res.getString(R.string.yesterday)).toString();
         } else if (time >= 3600 * 48 && time < 3600 * 72) {
-            return sb.append("前天").toString();
+            return sb.append(res.getString(R.string.before_yesterday)).toString();
         }
         return format(initTime, YEAR_MOUTH_DAY);
     }

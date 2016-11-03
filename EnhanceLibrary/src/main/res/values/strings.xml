@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">EnhanceLibrary</string>
+
+    <!-- TimeUtils -->
+    <string name="before_seconds">秒前</string>
+    <string name="before_minutes">分钟前</string>
+    <string name="before_hours">小时前</string>
+    <string name="before_day">天前</string>
+    <string name="yesterday">昨天</string>
+    <string name="before_yesterday">前天</string>
+
 </resources>

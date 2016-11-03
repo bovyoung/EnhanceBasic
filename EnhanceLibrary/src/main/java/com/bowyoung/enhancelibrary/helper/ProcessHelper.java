@@ -7,7 +7,7 @@ import android.os.Process;
 import com.bowyoung.enhancelibrary.base.BaseAppManager;
 
 /**
- * Created by zhangboo on 16/7/27.
+ * Created by S0S on 16/7/27.
  */
 public class ProcessHelper {
 
@@ -20,8 +20,9 @@ public class ProcessHelper {
     }
 
     public static ProcessHelper getInstance() {
-        if (mInstance == null)
+        if (mInstance == null) {
             mInstance = new ProcessHelper();
+        }
         return mInstance;
     }
 

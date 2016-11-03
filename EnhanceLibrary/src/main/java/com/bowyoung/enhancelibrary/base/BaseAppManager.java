@@ -2,6 +2,7 @@ package com.bowyoung.enhancelibrary.base;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Handler;
 import android.os.Looper;
 
@@ -80,6 +81,10 @@ public class BaseAppManager {
         for (Activity activity : mActivities) {
             activity.finish();
         }
+    }
+
+    public Resources getReources() {
+        return mContext.getResources();
     }
 
     public void runOnUIThread(Runnable runnable) {

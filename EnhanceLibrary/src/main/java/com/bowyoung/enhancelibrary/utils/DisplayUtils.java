@@ -26,17 +26,25 @@ public class DisplayUtils {
         return (int) (spValue * fontScale + 0.5f);
     }
 
-    public static int getScreenWidth(Context mContext) {
+    public static float getScreenDensity(Context context){
         DisplayMetrics dm = new DisplayMetrics();
-        ((Activity) mContext).getWindowManager().getDefaultDisplay()
+        ((Activity) context).getWindowManager().getDefaultDisplay()
+                .getMetrics(dm);
+        float screenDensity = dm.density;
+        return screenDensity;
+    }
+
+    public static int getScreenWidth(Context context) {
+        DisplayMetrics dm = new DisplayMetrics();
+        ((Activity) context).getWindowManager().getDefaultDisplay()
                 .getMetrics(dm);
         int screenWidth = dm.widthPixels;
         return screenWidth;
     }
 
-    public static int getScreenHeigh(Context mContext) {
+    public static int getScreenHeigh(Context context) {
         DisplayMetrics dm = new DisplayMetrics();
-        ((Activity) mContext).getWindowManager().getDefaultDisplay()
+        ((Activity) context).getWindowManager().getDefaultDisplay()
                 .getMetrics(dm);
         int screenHeigh = dm.heightPixels;
         return screenHeigh;
