@@ -2,13 +2,15 @@ package com.bowyoung.enhancelibrary.utils;
 
 import android.util.Log;
 
+import com.bowyoung.enhancelibrary.config.AppConfig;
+
 /**
  * Created by S0S on 16/5/6.
  */
 public class LogUtils {
 
     private static final String TAG = "LogUtils";
-    public static boolean mIsDebug = true;
+    public static boolean mIsDebug = AppConfig.IS_DEBUG;
 
     public static void setDebug(boolean isDebug) {
         if (isDebug) {
