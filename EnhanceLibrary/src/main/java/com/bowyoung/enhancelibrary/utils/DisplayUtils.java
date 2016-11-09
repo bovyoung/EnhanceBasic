@@ -1,52 +1,79 @@
 package com.bowyoung.enhancelibrary.utils;
 
-import android.app.Activity;
 import android.content.Context;
-import android.util.DisplayMetrics;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 
 public class DisplayUtils {
 
-    public static int px2dip(Context context, float pxValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (pxValue / scale + 0.5f);
+    private static final float DOT_FIVE = 0.5f;
+
+    public static int px2dip(float pxValue) {
+        final float scale = getDensity();
+        return (int) (pxValue / scale + DOT_FIVE);
     }
 
-    public static int dp2px(Context context, float dpValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (dpValue * scale + 0.5f);
+    public static int dp2px(float dpValue) {
+        final float scale = getDensity();
+        return (int) (dpValue * scale + DOT_FIVE);
     }
 
-    public static int px2sp(Context context, float pxValue) {
-        final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
-        return (int) (pxValue / fontScale + 0.5f);
+    public static int px2sp(float pxValue) {
+        final float fontScale = getScaledDensity();
+        return (int) (pxValue / fontScale + DOT_FIVE);
     }
 
-    public static int sp2px(Context context, float spValue) {
-        final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
-        return (int) (spValue * fontScale + 0.5f);
+    public static int sp2px(float spValue) {
+        final float fontScale = getScaledDensity();
+        return (int) (spValue * fontScale + DOT_FIVE);
     }
 
-    public static float getScreenDensity(Context context){
-        DisplayMetrics dm = new DisplayMetrics();
-        ((Activity) context).getWindowManager().getDefaultDisplay()
-                .getMetrics(dm);
-        float screenDensity = dm.density;
-        return screenDensity;
+    /**
+     * 获取屏幕分辨率
+     *
+     * @return
+     */
+    public static float getDensity() {
+        return Resources.getSystem().getDisplayMetrics().density;
     }
 
-    public static int getScreenWidth(Context context) {
-        DisplayMetrics dm = new DisplayMetrics();
-        ((Activity) context).getWindowManager().getDefaultDisplay()
-                .getMetrics(dm);
-        int screenWidth = dm.widthPixels;
-        return screenWidth;
+    public static float getScaledDensity() {
+        return Resources.getSystem().getDisplayMetrics().scaledDensity;
     }
 
-    public static int getScreenHeigh(Context context) {
-        DisplayMetrics dm = new DisplayMetrics();
-        ((Activity) context).getWindowManager().getDefaultDisplay()
-                .getMetrics(dm);
-        int screenHeigh = dm.heightPixels;
-        return screenHeigh;
+    /**
+     * 获取屏幕宽度
+     *
+     * @return
+     */
+    public static int getScreenWidth() {
+        return Resources.getSystem().getDisplayMetrics().widthPixels;
+    }
+
+    /**
+     * 获取屏幕高度
+     *
+     * @return
+     */
+    public static int getScreenHeight() {
+        return Resources.getSystem().getDisplayMetrics().heightPixels;
+    }
+
+    /**
+     * 是否横屏
+     *
+     * @return
+     */
+    public static boolean isLandscape() {
+        return Resources.getSystem().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+    }
+
+    /**
+     * 是否竖屏
+     *
+     * @return
+     */
+    public static boolean isPortrait(Context context) {
+        return Resources.getSystem().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
     }
 }

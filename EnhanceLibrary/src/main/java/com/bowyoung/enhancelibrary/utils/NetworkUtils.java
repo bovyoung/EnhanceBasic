@@ -202,7 +202,7 @@ public class NetworkUtils {
      * @param context
      * @return boolean
      */
-    public static boolean printNetworkInfo(Context context) {
+    public static void printNetworkInfo(Context context) {
         ConnectivityManager connectivity = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectivity != null) {
             NetworkInfo in = connectivity.getActiveNetworkInfo();
@@ -211,9 +211,9 @@ public class NetworkUtils {
             NetworkInfo[] info = connectivity.getAllNetworkInfo();
             if (info != null) {
                 for (int i = 0; i < info.length; i++) {
-                    LogUtils.i(TAG, "NetworkInfo[" + i + "]isAvailable : " + info[i].isAvailable());
-                    LogUtils.i(TAG, "NetworkInfo[" + i + "]isConnected : " + info[i].isConnected());
-                    LogUtils.i(TAG, "NetworkInfo[" + i + "]isConnectedOrConnecting : " + info[i].isConnectedOrConnecting());
+                    LogUtils.i(TAG, "NetworkInfo[" + i + "]isAvailable: " + info[i].isAvailable());
+                    LogUtils.i(TAG, "NetworkInfo[" + i + "]isConnected: " + info[i].isConnected());
+                    LogUtils.i(TAG, "NetworkInfo[" + i + "]isConnectedOrConnecting: " + info[i].isConnectedOrConnecting());
                     LogUtils.i(TAG, "NetworkInfo[" + i + "]: " + info[i]);
                 }
                 LogUtils.i(TAG, "\n");
@@ -221,6 +221,5 @@ public class NetworkUtils {
                 LogUtils.i(TAG, "getAllNetworkInfo is null");
             }
         }
-        return false;
     }
 }
