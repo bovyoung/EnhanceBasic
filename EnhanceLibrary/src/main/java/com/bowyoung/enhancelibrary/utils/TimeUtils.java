@@ -3,7 +3,6 @@ package com.bowyoung.enhancelibrary.utils;
 import android.content.res.Resources;
 
 import com.bowyoung.enhancelibrary.R;
-import com.bowyoung.enhancelibrary.base.BaseAppManager;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -25,7 +24,7 @@ public class TimeUtils {
     }
 
     public static String timeLogic(long initTime) {
-        Resources res = BaseAppManager.getInstance().getReources();
+        Resources res = Resources.getSystem();
         Calendar calendar = Calendar.getInstance();
         calendar.get(Calendar.DAY_OF_MONTH);
         long now = calendar.getTimeInMillis();

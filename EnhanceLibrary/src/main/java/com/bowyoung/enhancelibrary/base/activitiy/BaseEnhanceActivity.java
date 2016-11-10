@@ -51,9 +51,9 @@ public abstract class BaseEnhanceActivity extends AppCompatActivity {
      * Init screen information
      */
     private void initScreenInformation() {
-        mScreenDensity = DisplayUtils.getScreenDensity(mContext);
-        mScreenHeight = DisplayUtils.getScreenHeigh(mContext);
-        mScreenWidth = DisplayUtils.getScreenWidth(mContext);
+        mScreenDensity = DisplayUtils.getDensity();
+        mScreenHeight = DisplayUtils.getScreenHeight();
+        mScreenWidth = DisplayUtils.getScreenWidth();
     }
 
     public void startActivityAndFinish(Class<?> clazz) {

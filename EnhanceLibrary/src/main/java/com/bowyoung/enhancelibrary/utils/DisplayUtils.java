@@ -6,25 +6,26 @@ import android.content.res.Resources;
 
 public class DisplayUtils {
 
+    private static final String TAG = "DisplayUtils";
     private static final float DOT_FIVE = 0.5f;
 
-    public static int px2dip(float pxValue) {
-        final float scale = getDensity();
+    public static int px2dp(float pxValue) {
+        float scale = getDensity();
         return (int) (pxValue / scale + DOT_FIVE);
     }
 
     public static int dp2px(float dpValue) {
-        final float scale = getDensity();
+        float scale = getDensity();
         return (int) (dpValue * scale + DOT_FIVE);
     }
 
     public static int px2sp(float pxValue) {
-        final float fontScale = getScaledDensity();
+        float fontScale = getScaledDensity();
         return (int) (pxValue / fontScale + DOT_FIVE);
     }
 
     public static int sp2px(float spValue) {
-        final float fontScale = getScaledDensity();
+        float fontScale = getScaledDensity();
         return (int) (spValue * fontScale + DOT_FIVE);
     }
 
@@ -39,6 +40,10 @@ public class DisplayUtils {
 
     public static float getScaledDensity() {
         return Resources.getSystem().getDisplayMetrics().scaledDensity;
+    }
+
+    public static float getDensityDpi() {
+        return Resources.getSystem().getDisplayMetrics().densityDpi;
     }
 
     /**
@@ -75,5 +80,18 @@ public class DisplayUtils {
      */
     public static boolean isPortrait(Context context) {
         return Resources.getSystem().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
+    }
+
+    /**
+     * 输出屏幕尺寸信息
+     */
+    public static void printDisplay() {
+        LogUtils.i(TAG, "density: " + getDensity()
+                + ", densityDpi: " + getDensityDpi()
+                + ", scaledDensity: " + getScaledDensity()
+                + ", screenWidth: " + getScreenWidth()
+                + ", screenHeight: " + getScreenHeight()
+                + ", xdpi: " + Resources.getSystem().getDisplayMetrics().xdpi
+                + ", ydpi: " + Resources.getSystem().getDisplayMetrics().ydpi);
     }
 }
