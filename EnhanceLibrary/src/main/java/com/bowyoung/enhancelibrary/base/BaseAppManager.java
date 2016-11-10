@@ -28,7 +28,11 @@ public class BaseAppManager {
     }
 
     public static BaseAppManager getInstance() {
-        return mInstance;
+        if (mInstance == null) {
+            throw new NullPointerException("BaseAppManager has not been initialized.");
+        } else {
+            return mInstance;
+        }
     }
 
     public static void init(Context context) {
