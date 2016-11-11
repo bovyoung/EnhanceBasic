@@ -41,7 +41,7 @@ public class NetworkUtils {
      * 判断网络连接是否有效（此时可传输数据）。
      *
      * @param context
-     * @return boolean 不管wifi，还是mobile net，只有当前在连接状态（可有效传输数据）才返回true,反之false。
+     * @return boolean 不管Wifi，还是mobile net，只有当前在连接状态（可有效传输数据）才返回true,反之false。
      */
     public static boolean isConnected(Context context) {
         NetworkInfo net = getConnManager(context).getActiveNetworkInfo();
@@ -52,7 +52,7 @@ public class NetworkUtils {
      * 判断有无网络正在连接中（查找网络、校验、获取IP等）。
      *
      * @param context
-     * @return boolean 不管wifi，还是mobile net，只有当前在连接状态（可有效传输数据）才返回true,反之false。
+     * @return boolean 不管Wifi，还是mobile net，只有当前在连接状态（可有效传输数据）才返回true,反之false。
      */
     public static boolean isConnectedOrConnecting(Context context) {
         NetworkInfo[] nets = getConnManager(context).getAllNetworkInfo();
@@ -88,7 +88,7 @@ public class NetworkUtils {
     }
 
     /**
-     * 是否存在有效的WIFI连接
+     * 是否存在有效的Wifi连接
      *
      * @param context
      * @return
