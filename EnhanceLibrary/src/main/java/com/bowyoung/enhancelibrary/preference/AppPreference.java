@@ -3,14 +3,27 @@ package com.bowyoung.enhancelibrary.preference;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+/**
+ * Created by S0S on 2016/10/20.
+ */
+
 public class AppPreference {
+
     private SharedPreferences mSharedPref;
+    private static AppPreference mInstance;
 
     public static AppPreference get(Context context, String name) {
-        return new AppPreference(context, name);
+        if (null == mInstance) {
+            synchronized (AppPreference.class) {
+                if (null == mInstance) {
+                    mInstance = new AppPreference(context, name);
+                }
+            }
+        }
+        return mInstance;
     }
 
-    public AppPreference(Context context, String name) {
+    private AppPreference(Context context, String name) {
         mSharedPref = context.getSharedPreferences(name, Context.MODE_ENABLE_WRITE_AHEAD_LOGGING);
     }
 

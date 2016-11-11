@@ -14,16 +14,17 @@ public class ProcessHelper {
     private static ProcessHelper mInstance = null;
     private ActivityManager mActivityManager;
 
+    private static class ProcessHelperHolder {
+        public static final ProcessHelper INSTANCE = new ProcessHelper();
+    }
+
     private ProcessHelper() {
         mActivityManager = (ActivityManager) BaseAppManager.getInstance().getAppContext().
                 getSystemService(Context.ACTIVITY_SERVICE);
     }
 
     public static ProcessHelper getInstance() {
-        if (mInstance == null) {
-            mInstance = new ProcessHelper();
-        }
-        return mInstance;
+        return ProcessHelperHolder.INSTANCE;
     }
 
     public void killProcess(int pid) {
