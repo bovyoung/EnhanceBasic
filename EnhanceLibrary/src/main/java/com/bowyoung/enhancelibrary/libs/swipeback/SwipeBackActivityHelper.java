@@ -16,20 +16,20 @@
 
 package com.bowyoung.enhancelibrary.libs.swipeback;
 
-import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 
 import com.bowyoung.enhancelibrary.R;
+import com.bowyoung.enhancelibrary.base.activitiy.BaseEnhanceActivity;
 
 public class SwipeBackActivityHelper {
-    private Activity mActivity;
+    private BaseEnhanceActivity mActivity;
 
     private SwipeBackLayout mSwipeBackLayout;
 
-    public SwipeBackActivityHelper(Activity activity) {
+    public SwipeBackActivityHelper(BaseEnhanceActivity activity) {
         mActivity = activity;
     }
 
