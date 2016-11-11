@@ -9,9 +9,6 @@ import android.widget.ImageView;
 
 public class ExplosionUtils {
 
-    private ExplosionUtils() {
-    }
-
     private static final Canvas sCanvas = new Canvas();
 
     public static Bitmap createBitmapFromView(View view) {
