@@ -1,13 +1,11 @@
-package com.bowyoung.enhancelibrary;
+package com.bowyoung.enhancelibrary.base;
 
 import android.app.Application;
-
-import com.bowyoung.enhancelibrary.base.BaseAppManager;
 
 /**
  * Created by S0S on 16/7/14.
  */
-public class App extends Application {
+public class BaseApplication extends Application {
 
     @Override
     public void onCreate() {
