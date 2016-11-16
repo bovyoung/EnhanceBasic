@@ -21,12 +21,18 @@ public class ClipboardUtils {
      *
      * @param text
      */
-    public static void copy(String text) {
+    public static boolean copy(String text) {
         ClipboardManager clipboardManager = (ClipboardManager) BaseAppManager.getInstance()
                 .getAppContext().getSystemService(Context.CLIPBOARD_SERVICE);
         String label = text.length() > 3 ? text.substring(0, 3) : text;
         ClipData clipData = ClipData.newPlainText(label, text);
-        clipboardManager.setPrimaryClip(clipData);
+        try {   //在 TV 端此处会抛空指针异常
+            clipboardManager.setPrimaryClip(clipData);
+        } catch (Exception e) {
+            LogUtils.e(TAG, e.toString());
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -37,10 +43,14 @@ public class ClipboardUtils {
     public static String paste() {
         ClipboardManager clipboardManager = (ClipboardManager) BaseAppManager.getInstance()
                 .getAppContext().getSystemService(Context.CLIPBOARD_SERVICE);
-        ClipData clipData = clipboardManager.getPrimaryClip();
-        if (clipData != null) {   //开机第一次获取会为空
-            ClipData.Item cdi = clipData.getItemAt(0);
-            return cdi.getText().toString();
+        try {
+            ClipData clipData = clipboardManager.getPrimaryClip();      //TV 端此处会抛空指针异常
+            if (clipData != null) {   //开机第一次获取会为空
+                ClipData.Item cdi = clipData.getItemAt(0);
+                return cdi.getText().toString();
+            }
+        } catch (Exception e) {
+            LogUtils.i(TAG, e);
         }
         return "";
     }
