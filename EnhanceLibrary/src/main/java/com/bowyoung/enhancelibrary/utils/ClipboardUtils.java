@@ -8,7 +8,7 @@ import com.bowyoung.enhancelibrary.base.BaseAppManager;
 
 /**
  * Created by zhangboo on 2016/11/15.
- * <p>
+ *
  * Desc: 剪切板操作工具类
  */
 
