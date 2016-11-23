@@ -61,7 +61,7 @@ public class FileUtils {
         try {
             is = context.getAssets().open(fileName);
             br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-            String readLine = "";
+            String readLine;
             while ((readLine = br.readLine()) != null) {
                 sb.append(readLine);
             }
@@ -89,7 +89,7 @@ public class FileUtils {
         try {
             is = new FileInputStream(file);
             br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-            String readLine = null;
+            String readLine;
             while ((readLine = br.readLine()) != null) {
                 sb.append(readLine);
             }
