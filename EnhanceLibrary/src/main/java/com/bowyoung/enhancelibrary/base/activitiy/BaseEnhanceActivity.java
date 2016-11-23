@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.bowyoung.enhancelibrary.base.BaseAppManager;
 import com.bowyoung.enhancelibrary.utils.DisplayUtils;
@@ -25,6 +26,7 @@ public abstract class BaseEnhanceActivity extends AppCompatActivity {
     protected int mScreenWidth = 0;
     protected int mScreenHeight = 0;
     protected float mScreenDensity = 0.0f;
+    protected View mView;
 
     /**
      * bind layout resource file
@@ -40,7 +42,8 @@ public abstract class BaseEnhanceActivity extends AppCompatActivity {
         BaseAppManager.getInstance().addActivity(this);
         initScreenInformation();
         if (getContentViewID() != 0) {
-            setContentView(getContentViewID());
+            mView = View.inflate(mContext, getContentViewID(), null);
+            setContentView(mView);
             ButterKnife.inject(this);
         } else {
             throw new IllegalArgumentException("You must return a right contentView layout resource Id");
@@ -65,6 +68,11 @@ public abstract class BaseEnhanceActivity extends AppCompatActivity {
     public void startActivity(Class<?> clazz) {
         Intent intent = new Intent(mContext, clazz);
         startActivity(intent);
+    }
+
+    public void startAcitivityForResult(Class<?> clazz, int requestCode) {
+        Intent intent = new Intent(mContext, clazz);
+        startActivityForResult(intent, requestCode);
     }
 
     @Override
