@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.bowyoung.enhancelibrary.base.BaseAppManager;
-import com.bowyoung.enhancelibrary.utils.DisplayUtils;
 
 import butterknife.ButterKnife;
 
@@ -19,13 +18,6 @@ import butterknife.ButterKnife;
 public abstract class BaseEnhanceActivity extends AppCompatActivity {
 
     protected Context mContext = null;
-
-    /**
-     * Screen information
-     */
-    protected int mScreenWidth = 0;
-    protected int mScreenHeight = 0;
-    protected float mScreenDensity = 0.0f;
     protected View mView;
 
     /**
@@ -33,30 +25,24 @@ public abstract class BaseEnhanceActivity extends AppCompatActivity {
      *
      * @return id of layout resource
      */
-    protected abstract int getContentViewID();
+    protected abstract View getContentView();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
         BaseAppManager.getInstance().addActivity(this);
-        initScreenInformation();
-        if (getContentViewID() != 0) {
-            mView = View.inflate(mContext, getContentViewID(), null);
+        if (getContentView() != null) {
+            mView = getContentView();
             setContentView(mView);
             ButterKnife.inject(this);
         } else {
-            throw new IllegalArgumentException("You must return a right contentView layout resource Id");
+            throw new IllegalArgumentException("You must return a right contentView");
         }
     }
 
-    /**
-     * Init screen information
-     */
-    private void initScreenInformation() {
-        mScreenDensity = DisplayUtils.getDensity();
-        mScreenHeight = DisplayUtils.getScreenHeight();
-        mScreenWidth = DisplayUtils.getScreenWidth();
+    protected View getView(){
+        return mView;
     }
 
     public void startActivityAndFinish(Class<?> clazz) {
