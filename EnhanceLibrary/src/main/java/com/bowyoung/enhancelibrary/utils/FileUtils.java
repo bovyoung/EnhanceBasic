@@ -3,6 +3,8 @@ package com.bowyoung.enhancelibrary.utils;
 import android.content.Context;
 import android.graphics.Bitmap;
 
+import com.bowyoung.enhancelibrary.config.Constants;
+
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -60,7 +62,7 @@ public class FileUtils {
         BufferedReader br = null;
         try {
             is = context.getAssets().open(fileName);
-            br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+            br = new BufferedReader(new InputStreamReader(is, Constants.Encoding.UTF_8));
             String readLine;
             while ((readLine = br.readLine()) != null) {
                 sb.append(readLine);
@@ -88,7 +90,7 @@ public class FileUtils {
         BufferedReader br = null;
         try {
             is = new FileInputStream(file);
-            br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+            br = new BufferedReader(new InputStreamReader(is, Constants.Encoding.UTF_8));
             String readLine;
             while ((readLine = br.readLine()) != null) {
                 sb.append(readLine);

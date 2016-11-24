@@ -1,14 +1,22 @@
 package com.bowyoung.enhancelibrary.utils;
 
+import com.bowyoung.enhancelibrary.config.Constants;
+
 import java.security.MessageDigest;
-import java.util.ArrayList;
 import java.util.Formatter;
-import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Created by S0S on 2016/11/23.
+ * <p>
+ * Desc:
+ */
+
 public class StringUtils {
+
+    private static final String TAG = StringUtils.class.getName();
 
     public static boolean isEmpty(CharSequence str) {
         return str == null || str.length() == 0;
@@ -65,6 +73,7 @@ public class StringUtils {
                 return Integer.parseInt(str.trim());
             }
         } catch (Exception e) {
+            LogUtils.d(TAG, e.toString());
         }
         return 0;
     }
@@ -94,7 +103,7 @@ public class StringUtils {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("MD5");
             messageDigest.reset();
-            messageDigest.update(str.getBytes("UTF-8"));
+            messageDigest.update(str.getBytes(Constants.Encoding.UTF_8));
             byte[] bytes = messageDigest.digest();
             StringBuffer sbuffer = new StringBuffer();
             for (int i = 0; i < bytes.length; i++) {
