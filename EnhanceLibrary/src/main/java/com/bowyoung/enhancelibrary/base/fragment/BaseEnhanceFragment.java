@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bowyoung.enhancelibrary.widget.HintToast;
+import com.bowyoung.enhancelibrary.base.activitiy.BaseEnhanceActivity;
 
 /**
  * Created by S0S on 16/4/29.
@@ -17,50 +17,49 @@ import com.bowyoung.enhancelibrary.widget.HintToast;
 public abstract class BaseEnhanceFragment extends Fragment {
 
     protected Context mContext;
+    private View mView;
 
     /**
      * bind layout resource file
      *
      * @return id of layout resource
      */
-    protected abstract int getContentViewID();
+    protected abstract View getContentView();
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mContext = getActivity();
+        mView = getContentView();
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if (getContentViewID() != 0) {
-            mContext = getActivity();
-            View view = inflater.inflate(getContentViewID(), null);
-            return view;
-        } else {
-            return super.onCreateView(inflater, container, savedInstanceState);
+        return mView == null ? super.onCreateView(inflater, container, savedInstanceState) : mView;
+    }
+
+    protected View findViewById(int id) {
+        return mView.findViewById(id);
+    }
+
+    @Nullable
+    @Override
+    public View getView() {
+        return mView;
+    }
+
+    protected void startActivityAndFinish(Class<?> clazz) {
+        Intent intent = new Intent(mContext, clazz);
+        startActivity(intent);
+        if (mContext instanceof BaseEnhanceActivity) {
+            ((BaseEnhanceActivity) mContext).finish();
         }
     }
 
-
-    public void startActivityAndFinish(Class<?> clazz) {
+    protected void startActivity(Class<?> clazz) {
         Intent intent = new Intent(mContext, clazz);
         startActivity(intent);
     }
 
-    public void startActivity(Class<?> clazz) {
-        Intent intent = new Intent(mContext, clazz);
-        startActivity(intent);
-    }
-
-    protected void showToast(String msg) {
-        HintToast.showToast(mContext, msg);
-    }
-
-    protected void showToast(int resId) {
-        HintToast.showToast(mContext, resId);
-    }
-
-    protected void showToast(String msg, int duration) {
-        HintToast.showToast(mContext, msg, duration);
-    }
-
-    protected void showToast(int resId, int duration) {
-        HintToast.showToast(mContext, resId, duration);
-    }
 }
