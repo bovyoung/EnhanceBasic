@@ -9,7 +9,7 @@ import com.bowyoung.enhancelibrary.config.AppConfig;
  */
 public class LogUtils {
 
-    private static final String TAG = LogUtils.class.getName();
+    private static final String TAG = LogUtils.class.getSimpleName();
     public static boolean mIsDebug = AppConfig.IS_DEBUG;
 
     public static void setDebug(boolean isDebug) {
@@ -54,6 +54,12 @@ public class LogUtils {
     public static void w(String tag, Object object) {
         if (mIsDebug) {
             Log.w(tag, object.toString());
+        }
+    }
+
+    public static void v(String tag, Object object) {
+        if (mIsDebug) {
+            Log.v(tag, object.toString());
         }
     }
 

@@ -36,7 +36,7 @@ import java.util.Locale;
  */
 public class HanziToPinyin3 {
 
-    private static final String TAG = HanziToPinyin3.class.getName();
+    private static final String TAG = HanziToPinyin3.class.getSimpleName();
 
     /**
      * Unihans array.

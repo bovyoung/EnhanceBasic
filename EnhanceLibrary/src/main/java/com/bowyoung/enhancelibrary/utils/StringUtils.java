@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 
 public class StringUtils {
 
-    private static final String TAG = StringUtils.class.getName();
+    private static final String TAG = StringUtils.class.getSimpleName();
 
     public static boolean isEmpty(CharSequence str) {
         return str == null || str.length() == 0;

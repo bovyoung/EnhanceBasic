@@ -26,7 +26,7 @@ import java.io.Serializable;
 
 public class FileUtils {
 
-    private static final String TAG = FileUtils.class.getName();
+    private static final String TAG = FileUtils.class.getSimpleName();
 
     public static boolean writeFile(InputStream in, File file) {
         if (!file.getParentFile().exists()) {
